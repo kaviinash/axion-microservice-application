@@ -8,7 +8,7 @@ from datetime import datetime, timezone
 # Configuration
 # ---------------------------------------------------------------------------
 # Point to the ingestion service
-API_URL = os.getenv("API_URL", "http://10.244.0.181:8000/api/v1/telemetry/ingest")
+API_URL = os.getenv("API_URL", "http://ingestion-svc:8000/api/v1/telemetry/ingest")
 INTERVAL_SECONDS = int(os.getenv("INTERVAL_SECONDS", "5"))
 
 # ---------------------------------------------------------------------------

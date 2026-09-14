@@ -1,0 +1,58 @@
+axionUi:
+  replicaCount: 1
+  image:
+    repository: aksdevreg.azurecr.io/axion-ui
+    tag: v1
+  containerPort: 80
+
+axiondataSimulator:
+  replicaCount: 1
+  image:
+    repository: aksdevreg.azurecr.io/simulater
+    tag: v1
+  containerPort: 80
+  
+axiondataInestion:
+  replicaCount: 1
+  image:
+    repository: aksdevreg.azurecr.io/ingestion
+    tag: v2
+  containerPort: 8000
+  service:
+    type: ClusterIP
+    port: 8000
+    targetPort: 8000
+
+axionTelemetry:
+  replicaCount: 1
+  image:
+    repository: aksdevreg.azurecr.io/telemetry
+    tag: v2
+  containerPort: 8000
+
+pgadmin:
+  replicaCount: 1
+  image:
+    repository: dpage/pgadmin4
+    tag: latest
+  containerPort: 80
+  email: admin@admin.com
+  password: admin@123
+  service:
+    type: LoadBalancer
+    port: 80
+    targetPort: 80
+
+postgres:
+  replicaCount: 1
+  image:
+    repository: postgres
+    tag: 17.0-alpine
+  containerPort: 5432
+  user: axion_user
+  password: "P@ssw01rd@123"
+  database: axion_db
+  service:
+    type: ClusterIP
+    port: 5432
+    targetPort: 5432

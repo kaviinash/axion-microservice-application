@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: axion-ui
+spec:
+  replicas: {{ .Values.axionUi.replicaCount }}
+  selector:
+    matchLabels:
+      app: axion-ui
+  template:
+    metadata:
+      labels:
+        app: axion-ui
+    spec:
+      containers:
+        - name: axion-ui
+          image: "{{ .Values.axionUi.image.repository }}:{{ .Values.axionUi.image.tag }}"
+          ports:
+            - containerPort: {{ .Values.axionUi.containerPort }}

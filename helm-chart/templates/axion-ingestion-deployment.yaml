@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ingestion-service
+spec:
+  replicas: {{ .Values.axiondataInestion.replicaCount }}
+  selector:
+    matchLabels:
+      app: ingestion-service
+  template:
+    metadata:
+      labels:
+        app: ingestion-service
+    spec:
+      containers:
+        - name: ingestion-service
+          image: "{{ .Values.axiondataInestion.image.repository }}:{{ .Values.axiondataInestion.image.tag }}"
+          ports:
+            - containerPort: {{ .Values.axiondataInestion.containerPort }}

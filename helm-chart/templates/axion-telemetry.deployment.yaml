@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: telemetry
+spec:
+  replicas: {{ .Values.axionTelemetry.replicaCount }}
+  selector:
+    matchLabels:
+      app: telemetry
+  template:
+    metadata:
+      labels:
+        app: telemetry
+    spec:
+      containers:
+        - name: telemetry
+          image: "{{ .Values.axionTelemetry.image.repository }}:{{ .Values.axionTelemetry.image.tag }}"
+          ports:
+            - containerPort: {{ .Values.axiondataInestion.containerPort }}

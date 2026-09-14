@@ -16,4 +16,3 @@ spec:
         image: aksdevreg.azurecr.io/simulater:v1
         ports:
         - containerPort: 80
-
